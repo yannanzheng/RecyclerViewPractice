@@ -14,9 +14,6 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static android.widget.LinearLayout.HORIZONTAL;
-import static android.widget.LinearLayout.VERTICAL;
-
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.recycler_view)
