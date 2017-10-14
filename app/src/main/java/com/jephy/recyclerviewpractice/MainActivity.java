@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         listView.addItemDecoration(dividerItemDecoration);
         RecyclerView.Adapter mAdapter = new MyAdapter(this,dataArray);
         listView.setAdapter(mAdapter);
+
     }
 
     class MyAdapter extends RecyclerView.Adapter<MyViewHolder>  {
@@ -52,15 +53,17 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view  =LayoutInflater.from(context).inflate(R.layout.list_text_item, parent, false);
-            view.setOnClickListener(new View.OnClickListener() {
+            final MyViewHolder viewHolder = new MyViewHolder(view);
+//            final int positon = (int) viewHolder.view.getTag();
+            viewHolder.view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context,"点击了",Toast.LENGTH_SHORT).show();
+                    int position = viewHolder.getLayoutPosition();
+                    Toast.makeText(context,"点击了"+position,Toast.LENGTH_SHORT).show();
                 }
             });
-            MyViewHolder viewHolder = new MyViewHolder(view);
-            return viewHolder;
 
+            return viewHolder;
         }
 
         @Override
@@ -76,8 +79,10 @@ public class MainActivity extends AppCompatActivity {
 
     class MyViewHolder extends RecyclerView.ViewHolder{
         public TextView textView;
+        public View view;
         public MyViewHolder(View itemView) {
             super(itemView);
+            view = itemView;
             textView = itemView.findViewById(R.id.text_tv);
         }
     }
