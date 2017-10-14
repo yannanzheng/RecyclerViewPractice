@@ -7,9 +7,11 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(mAdapter);
     }
 
-    class MyAdapter extends RecyclerView.Adapter<MyViewHolder>{
+    class MyAdapter extends RecyclerView.Adapter<MyViewHolder>  {
         private String[] dataArray;
         private Context context;
 
@@ -49,11 +51,20 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.list_text_item,parent,false));
+            View view  =LayoutInflater.from(context).inflate(R.layout.list_text_item, parent, false);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context,"点击了",Toast.LENGTH_SHORT).show();
+                }
+            });
+            MyViewHolder viewHolder = new MyViewHolder(view);
+            return viewHolder;
+
         }
 
         @Override
-        public void onBindViewHolder(MyViewHolder holder, int position) {
+        public void onBindViewHolder(MyViewHolder holder, final int position) {
             holder.textView.setText(dataArray[position]);
         }
 
