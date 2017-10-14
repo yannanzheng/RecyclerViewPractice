@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(listView.getContext(),
                 LinearLayoutManager.VERTICAL);
-        dividerItemDecoration.setDrawable(getDrawable(R.drawable.divider));
+        dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.divider));
         listView.addItemDecoration(dividerItemDecoration);
         RecyclerView.Adapter mAdapter = new MyAdapter(this,dataArray);
         listView.setAdapter(mAdapter);
